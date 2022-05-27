@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import {ICellRendererAngularComp} from "ag-grid-angular";
+import {ICellRendererAngularComp} from "ag-grid-angular-legacy";
 
 @Component({
     selector: 'app-renderer-component',

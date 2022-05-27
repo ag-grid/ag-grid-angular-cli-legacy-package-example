@@ -1,6 +1,6 @@
 import {Component, OnDestroy} from "@angular/core";
 import {IHeaderGroupParams} from "ag-grid-community";
-import {IHeaderGroupAngularComp} from "ag-grid-angular";
+import {IHeaderGroupAngularComp} from "ag-grid-angular-legacy";
 
 @Component({
     templateUrl: 'header-group.component.html',

@@ -22,7 +22,7 @@
   "dependencies": {
     "ag-grid-enterprise": "~27.3.0",
     "ag-grid-community": "~27.3.0",
-    "ag-grid-angular": "~27.3.0",
+    "ag-grid-angular-legacy": "~27.3.0",
     "@angular/animations": "11.2.14",
     "@angular/common": "11.2.14",
     "@angular/compiler": "11.2.14",
