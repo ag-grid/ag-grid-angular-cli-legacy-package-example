@@ -20,7 +20,24 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ],
+      "ag-grid-community": [
+        "./node_modules/ag-grid-community"
+      ],
+      "ag-grid-community/*": [
+        "./node_modules/ag-grid-community/*"
+      ],
+      "ag-grid-angular-legacy": [
+        "./node_modules/ag-grid-angular-legacy"
+      ],
+      "ag-grid-angular-legacy/*": [
+        "./node_modules/ag-grid-angular-legacy/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
