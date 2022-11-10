@@ -60,7 +60,7 @@ export class EditorComponent implements ICellEditorAngularComp {
                              [columnDefs]="columnDefs"
                              [rowData]="rowData"
 
-                             [stopEditingWhenGridLosesFocus]="false"
+                             [stopEditingWhenCellsLoseFocus]="false"
 
                              [frameworkComponents]="frameworkComponents"
 
