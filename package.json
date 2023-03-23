@@ -1,11 +1,11 @@
 {
-  "name": "ag-grid-angular-cli-legacy-package-example",
-  "version": "29.2.0",
+  "name": "ag-grid-angular-cli-package-example",
+  "version": "27.3.0",
   "description": "AG Grid Angular Example Using Angular CLI",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ag-grid/ag-grid-angular-cli-legacy-package-example.git"
+    "url": "https://github.com/ag-grid/ag-grid-angular-cli-package-example.git"
   },
   "author": "Sean Landsman <sean@thelandsmans.com>",
   "angular-cli": {},
@@ -20,9 +20,9 @@
   },
   "private": true,
   "dependencies": {
-    "ag-grid-enterprise": "~29.2.0",
-    "ag-grid-community": "~29.2.0",
-    "ag-grid-angular-legacy": "~29.2.0",
+    "ag-grid-enterprise": "~27.3.0",
+    "ag-grid-community": "~27.3.0",
+    "ag-grid-angular": "~27.3.0",
     "@angular/animations": "11.2.14",
     "@angular/common": "11.2.14",
     "@angular/compiler": "11.2.14",
@@ -33,7 +33,7 @@
     "@angular/router": "11.2.14",
     "bootstrap": "4.5.0",
     "rxjs": "6.5.5",
-    "tslib": "^2.0.0",
+    "tslib": "2.0.3",
     "zone.js": "0.10.3"
   },
   "devDependencies": {

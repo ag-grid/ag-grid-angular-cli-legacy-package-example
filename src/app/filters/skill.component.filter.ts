@@ -1,7 +1,7 @@
-import {IDoesFilterPassParams, IFilterParams} from "ag-grid-community";
+import {IFilterParams} from "ag-grid-community";
 
 import {Component} from "@angular/core";
-import {IFilterAngularComp} from "ag-grid-angular-legacy";
+import {IFilterAngularComp} from "ag-grid-angular";
 
 @Component({
     template: `
@@ -67,31 +67,31 @@ export class SkillFilter implements IFilterAngularComp {
         }
     ];
 
-    private params!: IFilterParams;
+    private params: IFilterParams;
 
     agInit(params: IFilterParams): void {
         this.params = params;
     }
 
-    onSkillChanged($event: any, skill: any) {
+    onSkillChanged($event, skill) {
         skill.selected = $event.target.checked;
         this.params.filterChangedCallback();
     }
 
     getModel() {
-        return this.skills.reduce((state: any, skill) => {
+        return this.skills.reduce((state, skill) => {
             state[skill.field] = skill.selected;
             return state;
         }, {})
     }
 
-    setModel(model: any) {
+    setModel(model) {
         for (const skill of this.skills) {
             skill.selected = model && model[skill.field] ? model[skill.field].selected : false;
         }
     }
 
-    doesFilterPass(params: IDoesFilterPassParams) {
+    doesFilterPass(params) {
         const rowSkills = params.data.skills;
         let passed = true;
 

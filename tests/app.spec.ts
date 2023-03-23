@@ -1,6 +1,6 @@
 import {Component, ViewChild, ViewContainerRef} from "@angular/core";
-import {ColumnApi, GridApi, GridReadyEvent, ICellRendererParams} from "ag-grid-community";
-import {AgGridModule, ICellEditorAngularComp, ICellRendererAngularComp} from "ag-grid-angular-legacy";
+import {ColumnApi, GridApi} from "ag-grid-community";
+import {AgGridModule, ICellEditorAngularComp} from "ag-grid-angular";
 import { TestBed, waitForAsync } from "@angular/core/testing";
 import {FormsModule} from "@angular/forms";
 
@@ -8,14 +8,11 @@ import {FormsModule} from "@angular/forms";
     template: `
         <span>{{this.params.value * 2}}</span>`
 })
-class RendererComponent implements ICellRendererAngularComp {
-    params!: ICellRendererParams;
+class RendererComponent {
+    params: any;
 
-    public agInit(params: ICellRendererParams) {
+    public agInit(params) {
         this.params = params;
-    }
-    refresh(params: ICellRendererParams): boolean {
-        return false;
     }
 }
 
@@ -26,9 +23,9 @@ class RendererComponent implements ICellRendererAngularComp {
 })
 export class EditorComponent implements ICellEditorAngularComp {
     private params: any;
-    public value!: number;
+    public value: number;
 
-    @ViewChild('input', {read: ViewContainerRef, static: false}) public input: any;
+    @ViewChild('input', {read: ViewContainerRef, static: false}) public input;
 
     agInit(params: any): void {
         this.params = params;
@@ -60,7 +57,7 @@ export class EditorComponent implements ICellEditorAngularComp {
                              [columnDefs]="columnDefs"
                              [rowData]="rowData"
 
-                             [stopEditingWhenCellsLoseFocus]="false"
+                             [stopEditingWhenGridLosesFocus]="false"
 
                              [frameworkComponents]="frameworkComponents"
 
@@ -82,10 +79,10 @@ class TestHostComponent {
         'editor': EditorComponent
     };
 
-    api!: GridApi;
-    columnApi!: ColumnApi;
+    api: GridApi;
+    columnApi: ColumnApi;
 
-    public onGridReady(params: GridReadyEvent) {
+    public onGridReady(params) {
         this.api = params.api;
         this.columnApi = params.columnApi;
     }

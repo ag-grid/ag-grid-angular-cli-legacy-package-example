@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { CellClickedEvent, CellContextMenuEvent, CellDoubleClickedEvent, ColumnApi, GridApi, GridReadyEvent, ICellRendererParams } from 'ag-grid-community';
+import { ColumnApi, GridApi } from 'ag-grid-community';
 
 import { ProficiencyFilter } from '../filters/proficiency.component.filter';
 import { SkillFilter } from '../filters/skill.component.filter';
@@ -23,16 +23,16 @@ import { RendererComponent } from '../renderer-component/renderer.component';
     encapsulation: ViewEncapsulation.None
 })
 export class RichGridComponent {
-    public rowData!: any[];
-    public columnDefs!: any[];
-    public rowCount!: string;
+    public rowData: any[];
+    public columnDefs: any[];
+    public rowCount: string;
 
-    public defaultColDef!: any;
-    public components!: any;
-    public sideBar!: false;
+    public defaultColDef: any;
+    public components: any;
+    public sideBar: false;
 
-    public api!: GridApi;
-    public columnApi!: ColumnApi;
+    public api: GridApi;
+    public columnApi: ColumnApi;
 
     constructor() {
         this.defaultColDef = {
@@ -118,14 +118,14 @@ export class RichGridComponent {
                         },
                         enableRowGroup: true,
                         enablePivot: true,
-                        columnGroupShow: 'open'
+                        columnGroupShow: 'show'
                     },
                     {
                         headerName: 'DOB',
                         field: 'dob',
                         width: 195,
                         pinned: true,
-                        cellRenderer: (params: ICellRendererParams) => {
+                        cellRenderer: (params) => {
                             return pad(params.value.getDate(), 2) + '/' +
                                 pad(params.value.getMonth() + 1, 2) + '/' +
                                 params.value.getFullYear();
@@ -191,7 +191,7 @@ export class RichGridComponent {
         this.calculateRowCount();
     }
 
-    public onGridReady(params: GridReadyEvent) {
+    public onGridReady(params) {
         console.log('onGridReady');
 
         this.api = params.api;
@@ -202,19 +202,19 @@ export class RichGridComponent {
         this.calculateRowCount();
     }
 
-    public onCellClicked($event:CellClickedEvent) {
+    public onCellClicked($event) {
         console.log('onCellClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    public onCellDoubleClicked($event: CellDoubleClickedEvent) {
+    public onCellDoubleClicked($event) {
         console.log('onCellDoubleClicked: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    public onCellContextMenu($event:CellContextMenuEvent) {
+    public onCellContextMenu($event) {
         console.log('onCellContextMenu: ' + $event.rowIndex + ' ' + $event.colDef.field);
     }
 
-    public onQuickFilterChanged($event: any) {
+    public onQuickFilterChanged($event) {
         this.api.setQuickFilter($event.target.value);
     }
 
@@ -225,7 +225,7 @@ export class RichGridComponent {
     }
 
     public dobFilter() {
-        this.api.getFilterInstance('dob', (dateFilterComponent: any) => {
+        this.api.getFilterInstance('dob', (dateFilterComponent) => {
             dateFilterComponent.setModel({
                 type: 'equals',
                 dateFrom: '2000-01-01'
@@ -236,9 +236,9 @@ export class RichGridComponent {
     }
 }
 
-function skillsCellRenderer(params: ICellRendererParams) {
+function skillsCellRenderer(params) {
     const data = params.data;
-    const skills: string[] = [];
+    const skills = [];
     RefData.IT_SKILLS.forEach(function(skill) {
         if (data && data.skills && data.skills[skill]) {
             skills.push(`<img src="images/skills/${skill}.png" width="16px" title="${skill}" />`);
@@ -247,7 +247,7 @@ function skillsCellRenderer(params: ICellRendererParams) {
     return skills.join(' ');
 }
 
-function countryCellRenderer(params: ICellRendererParams) {
+function countryCellRenderer(params) {
     return `<img border='0' width='15' height='10' style='margin-bottom: 2px' src='images/flags/${RefData.COUNTRY_CODES[params.value]}.png'>${params.value}`;
 }
 
@@ -262,7 +262,7 @@ function createRandomPhoneNumber() {
     return result;
 }
 
-function percentCellRenderer(params: ICellRendererParams) {
+function percentCellRenderer(params) {
     const value = params.value;
 
     const eDivPercentBar = document.createElement('div');
@@ -289,7 +289,7 @@ function percentCellRenderer(params: ICellRendererParams) {
 }
 
 //Utility function used to pad the date formatting.
-function pad(num: number, totalStringSize: number) {
+function pad(num, totalStringSize) {
     let asString = num + '';
     while (asString.length < totalStringSize) asString = '0' + asString;
     return asString;
